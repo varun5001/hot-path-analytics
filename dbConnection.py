@@ -4,7 +4,6 @@ import urllib
 import datetime
 import config
 
-#cn_string = 'Driver={ODBC Driver 17 for SQL Server};Server=tcp:dxcdb1.database.windows.net,1433;Database=dxc;Uid=dxcadmin@dxcdb1;Pwd=DXC@dmin;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
 cn_string = config.CONNECTION_STRING
 params = urllib.parse.quote_plus(cn_string)
 engine = sqlalchemy.engine.create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)

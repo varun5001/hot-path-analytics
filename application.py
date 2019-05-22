@@ -15,7 +15,7 @@ app.secret_key = 'development'
 PORT = 5000  
 AUTHORITY_URL = config.AUTHORITY_HOST_URL + '/' + config.TENANT
 #REDIRECT_URI = 'http://localhost:{}/getAToken'.format(PORT)
-REDIRECT_URI = 'http://varun-alerts-dxc.azurewebsites.net/getAToken'
+REDIRECT_URI = 'https://poc-hot-path-analytics.azurewebsites.net/getAToken'
 TEMPLATE_AUTHZ_URL = ('https://login.microsoftonline.com/{}/oauth2/authorize?' +
                       'response_type=code&client_id={}&redirect_uri={}&' +
                       'state={}&resource={}')
@@ -24,7 +24,7 @@ TEMPLATE_AUTHZ_URL = ('https://login.microsoftonline.com/{}/oauth2/authorize?' +
 @app.route("/")
 def main():
     #login_url = 'http://localhost:{}/login'.format(PORT)
-    login_url = 'http://varun-alerts-dxc.azurewebsites.net/login'
+    login_url = 'https://poc-hot-path-analytics.azurewebsites.net/login'
     resp = flask.Response(status=307)
     resp.headers['location'] = login_url
     return resp

@@ -20,4 +20,9 @@ def getAlertLog():
     df = pd.read_sql(q,engine.connect())
     return df
 
+def getAlerts(email):
+    q = 'select * from dbo.Alerts where email = '+email
+    df = pd.read_sql(q, engine.connect())
+    return df
+
 

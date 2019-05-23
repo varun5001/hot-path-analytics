@@ -1,4 +1,4 @@
-from dbConnection import createAlert, getAlertLog
+from dbConnection import createAlert, getAlertLog, getAlerts
 
 import adal
 import flask
@@ -72,10 +72,11 @@ def graphcall():
                     'Content-Type': 'application/json',
                     'client-request-id': str(uuid.uuid4())}
     graph_data = requests.get(endpoint, headers=http_headers, stream=False).json()
-    df = getAlertLog()
+    alertLog = getAlertLog()
+    alerts = getAlerts(graph_data['userPrincipalName'])
     print(graph_data)
     #return flask.render_template('display_graph_info.html', graph_data=graph_data)
-    return flask.render_template('alert.html', alertLog=df.to_html(), graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
+    return flask.render_template('alert.html', alertLog=alertLog.to_html(), alerts = alerts.to_html(), graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
 
 @app.route('/graphcall', methods=['POST'])
 def my_form_post():
@@ -83,10 +84,10 @@ def my_form_post():
     phone = request.form['phone']
     email = request.form['email']
     displayName = request.form['displayName']
+    parameter = request.form['options_parameter']
+    condition = request.form['options_condition']
     processed_text = 'Alert is set to when temperature >= ' + temperature + ' for  ' + phone 
     frequency = 'daily'
-    parameter = 'temperature'
-    condition = 'gte'
     createAlert(str(phone), str(frequency), str(parameter), str(condition), temperature, str(email))
     return processed_text
     #return flask.render_template('success.html', displayName=displayName, message=processed_text)

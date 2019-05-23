@@ -20,13 +20,22 @@ Welcome, <u>{{ displayName}}</u>
 {% endfor %}
 </table>
 {{ alertLog | safe }}
+{{ alerts | safe }}
 </body>
 </html>
 
 
 <form method="POST">
-    Alert me on <input name="phone"> when temperature >= <input name="temperature_value">
+    Alert me on <input name="phone"> when <input type="radio" name="options_parameter" id="temperature" value="temperature"> Temperature </input><br>
+<input type="radio" name="options_parameter" id="Pressure" value="pressure"> Pressure </input><br>
+<input type="radio" name="options_parameter" id="Humidity" value="humidity"> Humidity </input><br>
+
+<input type="radio" name="options_condition" id="gte" value="gte"> >= </input><br>
+<input type="radio" name="options_condition" id="lte" value="lte"> <= </input><br>
+<input type="radio" name="options_condition" id="equal" value="equal"> = </input><br>
+
+ <input name="temperature_value">
    <input name="email" value='{{ userPrincipalName }}' type='hidden'>
    <input name="displayName" value= '{{ displayName }}' type='hidden'>
-    <input type="submit">
+    <input type="submit" value='Create Alert'>
 </form>

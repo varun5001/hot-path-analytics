@@ -21,8 +21,7 @@ def getAlertLog():
     return df
 
 def getAlerts(email):
-    q = 'select * from dbo.Alerts where email = '+email
+    q = "select * from dbo.Alerts where email = 'sriramvarun@sriramvarun.onmicrosoft.com'"
     df = pd.read_sql(q, engine.connect())
     return df
-
 

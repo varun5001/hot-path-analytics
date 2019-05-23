@@ -6,10 +6,13 @@
 </head>
 <body  style="background-color:black;color:white;font-family: Segoe UI Light;">
 <center>
+
+
 <h1>
-Welcome, <u>{{ displayName}}</u>
+Hi!!!, <u>{{ displayName}}</u> welcome to Alerts Management Portal
 </h1>
 </center>
+<!---
 <p1><b>User Data:</b> </p1>
 <table>
 {% for key, value in graph_data.items() %}
@@ -19,8 +22,18 @@ Welcome, <u>{{ displayName}}</u>
    </tr>
 {% endfor %}
 </table>
-{{ alertLog | safe }}
+-->
+<center>
+<button onclick="show_alerts()">My Subscriptions</button>
+<button onclick="show_alertLog()">Previous Alerts</button>
+</center>
+<div id="alerts" style="display:None">
+
 {{ alerts | safe }}
+</div>
+<div id="alertLog" style="display:None">
+{{ alertLog | safe }}
+</div>
 </body>
 </html>
 
@@ -46,3 +59,22 @@ Welcome, <u>{{ displayName}}</u>
    <input name="displayName" value= '{{ displayName }}' type='hidden'>
     <input type="submit" value='Create Alert'>
 </form>
+
+<script>
+function show_alerts() {
+  var x = document.getElementById("alerts");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function show_alertLog() {
+  var x = document.getElementById("alerts");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>

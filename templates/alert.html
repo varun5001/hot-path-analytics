@@ -26,13 +26,20 @@ Welcome, <u>{{ displayName}}</u>
 
 
 <form method="POST">
-    Alert me on <input name="phone"> when <input type="radio" name="options_parameter" id="temperature" value="temperature"> Temperature </input><br>
-<input type="radio" name="options_parameter" id="Pressure" value="pressure"> Pressure </input><br>
-<input type="radio" name="options_parameter" id="Humidity" value="humidity"> Humidity </input><br>
-
-<input type="radio" name="options_condition" id="gte" value="gte"> >= </input><br>
-<input type="radio" name="options_condition" id="lte" value="lte"> <= </input><br>
-<input type="radio" name="options_condition" id="equal" value="equal"> = </input><br>
+    Alert me on <input name="phone"> when 
+    <select name="options_parameter">
+  <option value="temperature">Temperature</option>
+  <option value="pressure">Pressure</option>
+  <option value="humidity">Humidity</option>
+ 
+</select>
+    <select name="options_condition">
+  <option value="gte">>=</option>
+  <option value="lte"><=</option>
+  <option value="equal">=</option>
+ 
+</select>
+        
 
  <input name="temperature_value">
    <input name="email" value='{{ userPrincipalName }}' type='hidden'>

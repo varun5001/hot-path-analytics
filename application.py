@@ -1,4 +1,4 @@
-from dbConnection import createAlert
+from dbConnection import createAlert, getAlertLog
 
 import adal
 import flask
@@ -6,6 +6,7 @@ import uuid
 import requests
 import config
 from flask import request
+import pandas as pd
 
 
 app = flask.Flask(__name__)
@@ -71,10 +72,10 @@ def graphcall():
                     'Content-Type': 'application/json',
                     'client-request-id': str(uuid.uuid4())}
     graph_data = requests.get(endpoint, headers=http_headers, stream=False).json()
-   
+    df = getAlertLog()
     print(graph_data)
     #return flask.render_template('display_graph_info.html', graph_data=graph_data)
-    return flask.render_template('alert.html', graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
+    return flask.render_template('alert.html', df=df, graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
 
 @app.route('/graphcall', methods=['POST'])
 def my_form_post():

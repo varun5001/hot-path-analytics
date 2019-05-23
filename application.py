@@ -75,7 +75,7 @@ def graphcall():
     df = getAlertLog()
     print(graph_data)
     #return flask.render_template('display_graph_info.html', graph_data=graph_data)
-    return flask.render_template('alert.html', df=df, graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
+    return flask.render_template('alert.html', alertLog=df.to_html(), graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
 
 @app.route('/graphcall', methods=['POST'])
 def my_form_post():

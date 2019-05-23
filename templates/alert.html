@@ -19,7 +19,7 @@ Welcome, <u>{{ displayName}}</u>
    </tr>
 {% endfor %}
 </table>
-{{ df.to_html() }}
+{{ alertLog | safe }}
 </body>
 </html>
 

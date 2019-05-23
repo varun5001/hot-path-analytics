@@ -28,7 +28,7 @@ Hi!!!, <u>{{ displayName}}</u> welcome to Alerts Management Portal
 <button onclick="show_alertLog()">Previous Alerts</button>
 <button onclick="create_alert()">Create Alert</button>
 
-</center>
+
 <div id="alerts" style="display:None;">
 
 {{ alerts | safe }}
@@ -36,8 +36,6 @@ Hi!!!, <u>{{ displayName}}</u> welcome to Alerts Management Portal
 <div id="alertLog" style="display:None;">
 {{ alertLog | safe }}
 </div>
-</body>
-</html>
 
 <div id="create_alert" style="display:None;">
 <form method="POST">
@@ -62,6 +60,10 @@ Hi!!!, <u>{{ displayName}}</u> welcome to Alerts Management Portal
     <input type="submit" value='Create Alert'>
 </form>
 </div>
+</center>
+</body>
+</html>
+
 <script>
 function show_alerts() {
   var x = document.getElementById("alerts");

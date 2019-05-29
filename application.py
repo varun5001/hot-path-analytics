@@ -1,4 +1,4 @@
-from dbConnection import createAlert, getAlertLog, getAlerts
+#from dbConnection import createAlert, getAlertLog, getAlerts
 
 import adal
 import flask
@@ -72,8 +72,12 @@ def graphcall():
                     'Content-Type': 'application/json',
                     'client-request-id': str(uuid.uuid4())}
     graph_data = requests.get(endpoint, headers=http_headers, stream=False).json()
-    alertLog = getAlertLog()
-    alerts = getAlerts(graph_data['userPrincipalName'])
+    
+    #alertLog = getAlertLog()
+    #alerts = getAlerts(graph_data['userPrincipalName'])
+    alertLog = pd.DataFrame()
+    alerts = pd.DataFrame()
+    
     print(graph_data)
     #return flask.render_template('display_graph_info.html', graph_data=graph_data)
     return flask.render_template('alert.html', alertLog=alertLog.to_html(), alerts = alerts.to_html(), graph_data=graph_data, userPrincipalName = graph_data['userPrincipalName'], displayName = graph_data['displayName'])
@@ -88,7 +92,7 @@ def my_form_post():
     condition = request.form['options_condition']
     processed_text = 'Alert is set to when temperature >= ' + temperature + ' for  ' + phone 
     frequency = 'daily'
-    createAlert(str(phone), str(frequency), str(parameter), str(condition), temperature, str(email))
+    #createAlert(str(phone), str(frequency), str(parameter), str(condition), temperature, str(email))
     return processed_text
     #return flask.render_template('success.html', displayName=displayName, message=processed_text)
 
